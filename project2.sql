@@ -121,23 +121,23 @@ INSERT INTO sales(transaction_date,product,price,payment_type,name,city,state,co
 INSERT INTO sales(transaction_date,product,price,payment_type,name,city,state,country,account_created,last_login,latitude,longitude) VALUES ('1/14/09 11:19','Chair',1200,'Visa','Jennifer','Jumeira','Dubayy','United Arab Emirates','1/14/09 10:44','1/14/09 21:26',25.2097222,55.2477778);
 INSERT INTO sales(transaction_date,product,price,payment_type,name,city,state,country,account_created,last_login,latitude,longitude) VALUES ('1/13/09 19:39','Chair',1200,'Visa','Jolene','Englewood','CO','United states','1/6/09 22:00','1/14/09 22:02',39.64778,-104.98722);
 SELECT product,AVG(price),count(*) FROM sales
-GROUP by product;
+GROUP BY product;
 
 SELECT MAX(price),MIN(price),AVG(price) FROM sales;
 SELECT product,SUM(price) AS total_sales FROM sales
-GROUP by product
+GROUP BY product
 HAVING total_sales > 50000;
 SELECT country FROM sales GROUP by country;
 SELECT name FROM sales WHERE country 
 in('United Arab Emirates', 'United Kingdom','United states') AND price = 7500;
-SELECT payment_type FROM sales GROUP by payment_type;
+SELECT payment_type FROM sales GROUP BY payment_type;
 
-SELECT count(*),
+SELECT COUNT(*),
 CASE 
-    WHEN country in ('Australia','Belgium','Canada','Denmark','Finland','France','Germany','India','Ireland','Israel','Italy') then 'group1'
-    WHEN country in ('Luxembourg' , 'Moldova' , 'Netherlands', 'Norway' , 'South Africa') then 'group2'
+    WHEN country IN ('Australia','Belgium','Canada','Denmark','Finland','France','Germany','India','Ireland','Israel','Italy') THEN 'group1'
+    WHEN country IN ('Luxembourg' , 'Moldova' , 'Netherlands', 'Norway' , 'South Africa') THEN 'group2'
     ELSE 'group3'
 END AS 'groups'
 FROM sales
-GROUP by groups
+GROUP BY groups
 ;
